@@ -109,6 +109,11 @@ document.getElementById("attendanceForm").addEventListener("submit", e => {
 
 // PDF Download
 document.getElementById("downloadPdfBtn").addEventListener("click", () => {
+  // 🔧 FIX: Update attendance data from the UI
+  document.querySelectorAll("select").forEach(sel => {
+    attendanceData[sel.name] = sel.value;
+  });
+  
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF();
   const batch = currentBatch === 1 ? batch1 : batch2;
@@ -129,3 +134,4 @@ document.getElementById("downloadPdfBtn").addEventListener("click", () => {
 
   doc.save(`Batch${currentBatch}_Attendance.pdf`);
 });
+
