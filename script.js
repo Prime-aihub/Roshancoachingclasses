@@ -9,7 +9,6 @@ const studentNames = [
 
 const batch1 = studentNames.slice(0, 30);
 const batch2 = studentNames.slice(30);
-
 let currentBatch = 1;
 const attendanceData = {};
 
@@ -18,7 +17,7 @@ const themeToggleBtn = document.getElementById("themeToggle");
 const batch1Btn = document.getElementById("batch1Btn");
 const batch2Btn = document.getElementById("batch2Btn");
 
-// Display date and time
+// ⏱️ Update date and time
 function updateDateTime() {
   const now = new Date();
   const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
@@ -29,13 +28,10 @@ function updateDateTime() {
 setInterval(updateDateTime, 1000);
 updateDateTime();
 
-// Theme toggling
+// 🎨 Theme toggle
 const themes = ["", "dark", "blue"];
-function getCurrentThemeIndex() {
-  return themes.indexOf(document.body.className);
-}
 function cycleTheme() {
-  let index = getCurrentThemeIndex();
+  let index = themes.indexOf(document.body.className);
   index = (index + 1) % themes.length;
   document.body.className = themes[index];
   localStorage.setItem("theme", themes[index]);
@@ -45,7 +41,7 @@ themeToggleBtn.addEventListener("click", cycleTheme);
 document.body.className = localStorage.getItem("theme") || "";
 themeToggleBtn.textContent = `Theme: ${["Light", "Dark", "Blue"][themes.indexOf(document.body.className)]}`;
 
-// Render batch students
+// 🧍 Render batch
 function renderBatch(batchNum) {
   currentBatch = batchNum;
   studentsContainer.innerHTML = "";
@@ -63,8 +59,8 @@ function renderBatch(batchNum) {
     `;
     studentsContainer.appendChild(div);
 
-    // Restore selection if exists
     const select = div.querySelector("select");
+    // Restore previous attendance selection
     if (attendanceData[name]) {
       select.value = attendanceData[name];
     }
@@ -74,22 +70,19 @@ function renderBatch(batchNum) {
     });
   });
 
-  // Update button styling
   batch1Btn.classList.toggle("active", batchNum === 1);
   batch2Btn.classList.toggle("active", batchNum === 2);
 }
 
-// Initial render
 renderBatch(1);
-
-// Switch batches
 batch1Btn.addEventListener("click", () => renderBatch(1));
 batch2Btn.addEventListener("click", () => renderBatch(2));
 
-// WhatsApp Submission
+// ✅ WhatsApp export
 document.getElementById("attendanceForm").addEventListener("submit", e => {
   e.preventDefault();
 
+  // 🟢 Capture current dropdown selections
   document.querySelectorAll("select").forEach(sel => {
     attendanceData[sel.name] = sel.value;
   });
@@ -102,18 +95,18 @@ document.getElementById("attendanceForm").addEventListener("submit", e => {
   });
 
   const encodedMsg = encodeURIComponent(msg);
-  const phone = "919004130508";
+  const phone = "919004130508"; // Your number
   const waLink = `https://wa.me/${phone}?text=${encodedMsg}`;
   window.open(waLink, "_blank");
 });
 
-// PDF Download
+// ✅ PDF download
 document.getElementById("downloadPdfBtn").addEventListener("click", () => {
-  // 🔧 FIX: Update attendance data from the UI
+  // 🟢 Capture current dropdown selections
   document.querySelectorAll("select").forEach(sel => {
     attendanceData[sel.name] = sel.value;
   });
-  
+
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF();
   const batch = currentBatch === 1 ? batch1 : batch2;
