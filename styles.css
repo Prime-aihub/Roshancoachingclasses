@@ -1,0 +1,223 @@
+:root {
+  --bg-color: #f5f5f5;
+  --text-color: #222;
+  --card-bg: #fff;
+  --card-shadow: rgba(0,0,0,0.1);
+  --button-bg-submit: #00cc44;
+  --button-bg-download: #0057e7;
+  --button-text: #fff;
+  --button-hover-submit: #00dd55;
+  --button-hover-download: #006fff;
+  --select-border: #ddd;
+  --select-bg: #fff;
+  --select-text: #222;
+  --footer-color: #222;
+  --footer-opacity: 0.15;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 20px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 8px;
+  font-weight: 900;
+  user-select: none;
+}
+
+header {
+  position: relative;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+#dateTime {
+  font-weight: 600;
+  font-size: 1.1rem;
+  letter-spacing: 0.02em;
+  color: #555;
+  user-select: none;
+  margin-top: 6px;
+}
+
+#themeToggle {
+  position: absolute;
+  top: 0;
+  right: 10px;
+  background: transparent;
+  border: 1.5px solid var(--button-bg-submit);
+  color: var(--button-bg-submit);
+  padding: 5px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+#themeToggle:hover {
+  background-color: var(--button-bg-submit);
+  color: var(--button-text);
+  border-color: var(--button-bg-submit);
+}
+
+.batch-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.batch-buttons button {
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: bold;
+  border: 2px solid var(--button-bg-submit);
+  background: transparent;
+  color: var(--button-bg-submit);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.batch-buttons button.active,
+.batch-buttons button:hover {
+  background: var(--button-bg-submit);
+  color: var(--button-text);
+}
+
+#studentsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 15px;
+  min-height: 600px;
+}
+
+.student {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--card-bg);
+  padding: 10px 15px;
+  border-radius: 8px;
+  box-shadow: 0 1px 6px var(--card-shadow);
+  transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+label {
+  font-weight: 600;
+  color: var(--text-color);
+  user-select: none;
+}
+
+select {
+  padding: 5px 10px;
+  font-size: 14px;
+  border-radius: 5px;
+  border: 1.5px solid var(--select-border);
+  background-color: var(--select-bg);
+  color: var(--select-text);
+  transition: border-color 0.3s;
+}
+
+select:focus {
+  border-color: var(--button-bg-submit);
+  outline: none;
+  box-shadow: 0 0 8px var(--button-bg-submit);
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+button[type="submit"],
+#downloadPdfBtn {
+  padding: 12px 25px;
+  font-size: 16px;
+  border: none;
+  color: var(--button-text);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  user-select: none;
+}
+
+button[type="submit"] {
+  background-color: var(--button-bg-submit);
+  box-shadow: 0 0 12px var(--button-bg-submit);
+}
+
+button[type="submit"]:hover {
+  background-color: var(--button-hover-submit);
+  box-shadow: 0 0 20px var(--button-hover-submit);
+}
+
+#downloadPdfBtn {
+  background-color: var(--button-bg-download);
+  box-shadow: 0 0 12px var(--button-bg-download);
+}
+
+#downloadPdfBtn:hover {
+  background-color: var(--button-hover-download);
+  box-shadow: 0 0 20px var(--button-hover-download);
+}
+
+footer {
+  text-align: center;
+  margin-top: auto;
+  padding: 10px 0;
+  font-size: 0.75rem;
+  color: var(--footer-color);
+  opacity: var(--footer-opacity);
+  user-select: none;
+  font-style: italic;
+}
+
+/* DARK THEME */
+body.dark {
+  --bg-color: #121212;
+  --text-color: #e0e0e0;
+  --card-bg: #1e1e1e;
+  --card-shadow: rgba(0, 0, 0, 0.8);
+  --button-bg-submit: #009900;
+  --button-bg-download: #003399;
+  --button-text: #fff;
+  --button-hover-submit: #00bb00;
+  --button-hover-download: #0044cc;
+  --select-border: #444;
+  --select-bg: #333;
+  --select-text: #eee;
+  --footer-color: #ddd;
+  --footer-opacity: 0.1;
+}
+
+/* BLUE THEME */
+body.blue {
+  --bg-color: #e6f0ff;
+  --text-color: #003366;
+  --card-bg: #cce0ff;
+  --card-shadow: rgba(0, 51, 102, 0.2);
+  --button-bg-submit: #0059b3;
+  --button-bg-download: #004080;
+  --button-text: #fff;
+  --button-hover-submit: #0073e6;
+  --button-hover-download: #0059b3;
+  --select-border: #99bbff;
+  --select-bg: #cce0ff;
+  --select-text: #003366;
+  --footer-color: #003366;
+  --footer-opacity: 0.15;
+}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Attendance App with Batches</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Class Attendance</h1>
+    <div id="dateTime"></div>
+    <button id="themeToggle">Toggle Theme</button>
+  </header>
+
+  <div class="batch-buttons">
+    <button id="batch1Btn" class="active">Batch 1</button>
+    <button id="batch2Btn">Batch 2</button>
+  </div>
+
+  <form id="attendanceForm">
+    <div id="studentsContainer"></div>
+
+    <div class="buttons">
+      <button type="submit">Send via WhatsApp</button>
+      <button type="button" id="downloadPdfBtn">Download as PDF</button>
+    </div>
+  </form>
+
+  <footer>
+    <small>developed by PrimeAi-Hub</small>
+  </footer>
+
+  <!-- PDF Libs -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
