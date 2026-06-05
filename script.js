@@ -159,7 +159,7 @@ document
       };
 
       await fetch(
-        "https://script.google.com/macros/s/AKfycbyGuaX40BEaQFKor2rR3ldt5x88tmZZTUyK3NZndPntI0XZXPqcFrJhTmnQ3o4nnHS4/exec",
+        "https://script.google.com/macros/s/AKfycbwtte1aeH-ICNTlAY1_4MTH-_RKOftHusAgGfY3j6ZolXxC47aT36n5KCH2xxIMJYrn/exec",
         {
           method: "POST",
           headers: {
