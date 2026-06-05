@@ -174,10 +174,10 @@ document
 
   } catch (error) {
 
-    console.error(error);
+  console.error(error);
 
-    alert("Error Saving Attendance");
+  alert(error.message);
 
-  }
+}
 
 });
