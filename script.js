@@ -133,45 +133,51 @@ document.getElementById("downloadPdfBtn").addEventListener("click", () => {
   doc.save(`Batch${currentBatch}_Attendance.pdf`);
 });
 
-// SAVE ATTENDANCE
+// SAVE ATTENDANCE TO GOOGLE SHEETS
 
 document
 .getElementById("saveAttendanceBtn")
-.addEventListener("click", () => {
+.addEventListener("click", async () => {
 
   const today =
   new Date()
   .toISOString()
   .split("T")[0];
 
-  attendanceHistory =
-  attendanceHistory.filter(
-    record =>
-    !(
-      record.date === today &&
-      record.batch === currentBatch
-    )
-  );
+  const students =
+  document.querySelectorAll("select");
 
-  document
-  .querySelectorAll("select")
-  .forEach(sel => {
+  try {
 
-    attendanceHistory.push({
-      date: today,
-      student: sel.name,
-      batch: currentBatch,
-      status: sel.value
-    });
+    for (const sel of students) {
 
-  });
+      const record = {
+        date: today,
+        student: sel.name,
+        batch: `Batch ${currentBatch}`,
+        status: sel.value
+      };
 
-  localStorage.setItem(
-    "attendanceHistory",
-    JSON.stringify(attendanceHistory)
-  );
+      await fetch(
+        "https://script.google.com/macros/s/AKfycbyGuaX40BEaQFKor2rR3ldt5x88tmZZTUyK3NZndPntI0XZXPqcFrJhTmnQ3o4nnHS4/exec",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(record)
+        }
+      );
+    }
 
-  alert("Attendance Saved Successfully");
+    alert("Attendance Saved To Google Sheets");
+
+  } catch (error) {
+
+    console.error(error);
+
+    alert("Error Saving Attendance");
+
+  }
 
 });
-
