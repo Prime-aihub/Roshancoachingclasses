@@ -12,6 +12,11 @@ const batch2 = studentNames.slice(30);
 let currentBatch = 1;
 const attendanceData = {};
 
+let attendanceHistory =
+JSON.parse(
+localStorage.getItem("attendanceHistory")
+) || [];
+
 const studentsContainer = document.getElementById("studentsContainer");
 const themeToggleBtn = document.getElementById("themeToggle");
 const batch1Btn = document.getElementById("batch1Btn");
@@ -126,5 +131,47 @@ document.getElementById("downloadPdfBtn").addEventListener("click", () => {
   });
 
   doc.save(`Batch${currentBatch}_Attendance.pdf`);
+});
+
+// SAVE ATTENDANCE
+
+document
+.getElementById("saveAttendanceBtn")
+.addEventListener("click", () => {
+
+  const today =
+  new Date()
+  .toISOString()
+  .split("T")[0];
+
+  attendanceHistory =
+  attendanceHistory.filter(
+    record =>
+    !(
+      record.date === today &&
+      record.batch === currentBatch
+    )
+  );
+
+  document
+  .querySelectorAll("select")
+  .forEach(sel => {
+
+    attendanceHistory.push({
+      date: today,
+      student: sel.name,
+      batch: currentBatch,
+      status: sel.value
+    });
+
+  });
+
+  localStorage.setItem(
+    "attendanceHistory",
+    JSON.stringify(attendanceHistory)
+  );
+
+  alert("Attendance Saved Successfully");
+
 });
 
